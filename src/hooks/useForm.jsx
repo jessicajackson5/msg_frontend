@@ -1,9 +1,9 @@
 import { useState } from "react"
 
 //La responsabilidad de el hook useForm es manejar la logica del formulario
-const useForm = ({onSubmit}) => {
+const useForm = ({onSubmit, initial_form_state}) => {
     //Logica del estado, efecto lo quieras manejar
-    const [form_state, setFormState] = useState({ email: '', password: '' })
+    const [form_state, setFormState] = useState({initial_form_state})
 
      const handleSubmit = async (event) => {
         event.preventDefault()

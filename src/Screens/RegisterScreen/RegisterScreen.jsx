@@ -1,97 +1,95 @@
 import React, {useState} from 'react';
 import './RegisterScreen.css';
-import LOCALSTORAGE_KEYS from '../../constants/localstorage'
+import useForm from '../../hooks/useForm.jsx'
+import { REGISTER_FIELD_NAMES } from '../../constants/form/register.js';
 import { useNavigate } from 'react-router-dom'
-import { login } from '../../services/authService'
+import { register } from '../../services/authService'
 
 const RegisterScreen = () => {
+    const[error, setError] = useState(null)
+    const[loading,setLoading] = useState(false)
+    const navigate = useNavigate() 
+    const onSubmit = async () => {
+        try {
+			setLoading(true)
+			const server_response_data = await register({
+				name: form_state[REGISTER_FIELD_NAMES.NAME],
+				email: form_state[REGISTER_FIELD_NAMES.EMAIL],
+				password: form_state[REGISTER_FIELD_NAMES.PASSWORD]
+			})
+			if (server_response_data.ok) {
+				navigate('/login')
+			}
+			else {
+				setError(server_response_data.message)
+			}
+		}
+		catch (error) {
+			console.log(error)
+			setError('Ocurrio un error al comunicarnos con el servidor (intentalo mas tarde)')
+		}
+		finally {
+			setLoading(false)
+		}
+	}
+	const {form_state, handleSubmit, handleChange} = useForm({ 
+		onSubmit, 
+		initial_form_state: { 
+			[REGISTER_FIELD_NAMES.NAME]: '', 
+			[REGISTER_FIELD_NAMES.EMAIL]: '', 
+			[REGISTER_FIELD_NAMES.PASSWORD]: '' 
+		} 
+	})
 
-        const [form_state, setFormState] = useState({name: '', email: '', password: ''});
-        const handleSubmit = async (event) => {
-            try{
-                // We don't want the page to reload
-                event.preventDefault()
-                // Handle form submission
-                console.log('The form was submitted')
-                // Capture the values in the form
-                console.log(form_state)
-                // Send the values to my API using FETCH
-                const server_response_http = await fetch(
-                    `http://localhost:3000/api/users/login`,
-                    {
-                        method: 'POST',
-                        headers: {
-                        'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(
-                            {
-                            name: form_state.name,
-                            email: form_state.email,
-                            password: form_state.password
-                            }
-                        )
-                    }
-                )
-                const server_response_data = await server_response_http.json()
-                console.log(server_response_data)
-            }
-            catch(error){
-                alert("An error occurred")
-                console.error("An error occured in the login form", error)
-            }
-        }
-        const handleChange = (event) =>{
-            const value = event.target.value
-            const field_name = event.target.name
-            setFormState(
-                (prevFormState) => {
-                    return {
-                        ...prevFormState,
-                        [field_name]: value
-                    }
-                }
-            )
-            console.log({value, field_name})
-        }
+	return (
+		<div>
+			<h1>Registro</h1>
+			<form onSubmit={handleSubmit}>
 
-    return (
-        <div>
-            <h1>Register</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor='name'>Enter your name.</label>
-                    <input 
-                        id='name' 
-                        name='name' 
-                        placeholder='Jane Doe' 
-                        type='text' 
-                        value={form_state.name}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor='email'>Enter your email.</label>
-                    <input 
-                        id='email' 
-                        name='email' 
-                        placeholder='fool@gmail.com' 
-                        type='email' 
-                        value={form_state.email}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor = 'password'>Enter your password.</label>
-                    <input 
-                        id='password' 
-                        name='password' 
-                        type='password'
-                        value={form_state.password}
-                    />
-                </div>
-                <button type = 'submit'>Register account</button>
-            </form>
-        </div>
-    );
-};
-export default RegisterScreen;
+				<div>
+					<label htmlFor='name'>Ingresa tu nombre:</label>
+					<input
+						id='name'
+						name={REGISTER_FIELD_NAMES.NAME}
+						type='text'
+						value={form_state[REGISTER_FIELD_NAMES.NAME]}
+						onChange={handleChange}
+
+					/>
+				</div>
+				<div>
+
+					<label htmlFor='email'>Ingresa tu mail:</label>
+					<input
+						id='email'
+						name={REGISTER_FIELD_NAMES.EMAIL}
+						placeholder='joedoe@mail.com'
+						type='email'
+						value={form_state[REGISTER_FIELD_NAMES.EMAIL]}
+						onChange={handleChange}
+					/>
+				</div>
+				<div>
+					<label htmlFor='password'>Ingresa tu Contraseña:</label>
+					<input
+						id='password'
+						name={REGISTER_FIELD_NAMES.PASSWORD}
+						type='password'
+						value={form_state[REGISTER_FIELD_NAMES.PASSWORD]}
+						onChange={handleChange}
+
+					/>
+				</div>
+				{error && <span style={{ color: 'red' }}>{error}</span>}
+				{
+					loading
+						? <button type='button' disabled={loading}>Cargando</button>
+						: <button type='submit' >Registrar</button>
+				}
+
+			</form>
+		</div>
+	)
+}
+
+export default RegisterScreen
