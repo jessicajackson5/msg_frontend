@@ -112,8 +112,3 @@ const WorkspaceDetailScreen = () => {
 }
 
 export default WorkspaceDetailScreen
-
-/* MERN STACK = Mongo / MySQL, Express, React, Node. Next, typescript, (ts con react), testing, algun proyectito con API OpenIA*/
-/* .NET C# */
-/* JAVA SpringBoot */
-/* NODE ESTA MUERTO, AHORA HAY QUE USAR BUN.js */

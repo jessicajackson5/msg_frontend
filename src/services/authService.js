@@ -24,7 +24,7 @@ export const login = async ({ email, password }) => {
     catch(error){
         console.error(error)
         throw {
-            message: 'Ocurrio un error al comunicarnos con el servidor (intentalo mas tarde)' 
+            message: 'An error ocurred communicating with the server. Try again later' 
         }
     }
 }
@@ -54,7 +54,7 @@ export const register = async ({ email, password, name }) => {
     catch(error){
         console.error(error)
         throw {
-            message: 'Ocurrio un error al comunicarnos con el servidor (intentalo mas tarde)' 
+            message: 'An error ocurred communicating with the server. Try again later' 
         }
     }
 }

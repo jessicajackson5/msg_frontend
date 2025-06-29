@@ -12,7 +12,7 @@ const LoginScreen = () => {
 
     const navigate = useNavigate()
 
-    //Esta funcion es la accion que se ejecutara cuando se envie en formulario
+    // Executes when the form is submitted
     const onSubmit = async () => {
         try {
             setLoading(true)
@@ -32,7 +32,7 @@ const LoginScreen = () => {
             }
         }
         catch (error) {
-            setError('Ocurrio un error al comunicarnos con el servidor (intentalo mas tarde)')
+            setError('An error ocurred communicating with the server. Try again later')
         }
         finally{
             setLoading(false)
@@ -52,7 +52,7 @@ const LoginScreen = () => {
             <form onSubmit={handleSubmit}>
                 <div>
 
-                    <label htmlFor='email'>Ingresa tu mail:</label>
+                    <label htmlFor='email'>Enter mail:</label>
                     <input
                         id='email'
                         name={LOGIN_FIELD_NAMES.EMAIL}
@@ -63,7 +63,7 @@ const LoginScreen = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor='password'>Ingresa tu Contraseña:</label>
+                    <label htmlFor='password'>Enter password:</label>
                     <input
                         id='password'
                         name={LOGIN_FIELD_NAMES.PASSWORD}
@@ -76,8 +76,8 @@ const LoginScreen = () => {
                 {error && <span style={{ color: 'red' }}>{error}</span>}
                 {
                     loading
-                        ? <button type='button' disabled={loading}>Cargando</button>
-                        : <button type='submit' >Iniciar sesion</button>
+                        ? <button type='button' disabled={loading}>Loading</button>
+                        : <button type='submit' >Start session</button>
                 }
 
             </form>
