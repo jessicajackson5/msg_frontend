@@ -15,7 +15,7 @@ const HomeScreen = () => {
       setResponse(data)
     }
     catch(error){
-      console.error('Error al obtener workspaces', error)
+      console.error('Error in obtaining workspaces', error)
     }
     finally{
       setLoading(false)
