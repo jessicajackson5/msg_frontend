@@ -8,6 +8,7 @@ import { register } from '../../services/authService'
 const RegisterScreen = () => {
     const[error, setError] = useState(null)
     const[loading,setLoading] = useState(false)
+
     const navigate = useNavigate() 
     const onSubmit = async () => {
         try {
@@ -26,7 +27,7 @@ const RegisterScreen = () => {
 		}
 		catch (error) {
 			console.log(error)
-			setError('Ocurrio un error al comunicarnos con el servidor (intentalo mas tarde)')
+			setError('An error ocurred communicating with the server. Try again later')
 		}
 		finally {
 			setLoading(false)
@@ -43,11 +44,11 @@ const RegisterScreen = () => {
 
 	return (
 		<div>
-			<h1>Registro</h1>
+			<h1>Register</h1>
 			<form onSubmit={handleSubmit}>
 
 				<div>
-					<label htmlFor='name'>Ingresa tu nombre:</label>
+					<label htmlFor='name'>Enter your name:</label>
 					<input
 						id='name'
 						name={REGISTER_FIELD_NAMES.NAME}
@@ -59,18 +60,18 @@ const RegisterScreen = () => {
 				</div>
 				<div>
 
-					<label htmlFor='email'>Ingresa tu mail:</label>
+					<label htmlFor='email'>Enter your email:</label>
 					<input
 						id='email'
 						name={REGISTER_FIELD_NAMES.EMAIL}
-						placeholder='joedoe@mail.com'
+						placeholder='johndoe@mail.com'
 						type='email'
 						value={form_state[REGISTER_FIELD_NAMES.EMAIL]}
 						onChange={handleChange}
 					/>
 				</div>
 				<div>
-					<label htmlFor='password'>Ingresa tu Contraseña:</label>
+					<label htmlFor='password'>Enter your password:</label>
 					<input
 						id='password'
 						name={REGISTER_FIELD_NAMES.PASSWORD}
@@ -83,8 +84,8 @@ const RegisterScreen = () => {
 				{error && <span style={{ color: 'red' }}>{error}</span>}
 				{
 					loading
-						? <button type='button' disabled={loading}>Cargando</button>
-						: <button type='submit' >Registrar</button>
+						? <button type='button' disabled={loading}>Loading</button>
+						: <button type='submit' >Register</button>
 				}
 
 			</form>

@@ -40,12 +40,14 @@ export const register = async ({ email, password, name }) => {
                 },
                 body: JSON.stringify(
                     {
+                        name: name,
                         email: email,
                         password: password
                     }
                 )
             }
         )
+        console.log(name, email, password)
         const server_response_data = await server_response_http.json()
         return server_response_data
     }
