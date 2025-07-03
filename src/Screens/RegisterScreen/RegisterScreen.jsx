@@ -44,7 +44,8 @@ const RegisterScreen = () => {
 
 	return (
 		<div>
-			<h1>Registro</h1>
+			<h1>Create an acccount</h1>
+			<p>Join our community</p>
 			<form onSubmit={handleSubmit}>
 
 				<div>
