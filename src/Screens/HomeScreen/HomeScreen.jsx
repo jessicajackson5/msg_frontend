@@ -32,14 +32,14 @@ const HomeScreen = () => {
 
   return (
     <div>
-      <h1>Tus espacios de trabajo</h1>
+      <h1>Your Workspaces</h1>
       <Link to={'/new'}>
-        Crear espacio de trabajo
+        Create a new workspace
       </Link>
       <div>
         {
           loading 
-          ? <h2>Cargando...</h2>
+          ? <h2>Loading...</h2>
           : <div>
             {
               response.data.workspaces.map(
@@ -47,7 +47,7 @@ const HomeScreen = () => {
                   return (
                     <div key={element.workspace._id}>
                       <h2>{element.workspace.name}</h2>
-                      <Link to={'/workspaces/' + element.workspace._id}> Ir a espacio de trabajo </Link>
+                      <Link to={'/workspaces/' + element.workspace._id}> Go to your workspace</Link>
                     </div>
                   )
                 }

@@ -48,7 +48,7 @@ const LoginScreen = () => {
 
     return (
         <div>
-            <h1>Login</h1>
+            <h1>Enter your email to sign in</h1>
             <form onSubmit={handleSubmit}>
                 <div>
 
@@ -77,7 +77,7 @@ const LoginScreen = () => {
                 {
                     loading
                         ? <button type='button' disabled={loading}>Loading</button>
-                        : <button type='submit' >Start session</button>
+                        : <button type='submit' >Sign in</button>
                 }
 
             </form>
