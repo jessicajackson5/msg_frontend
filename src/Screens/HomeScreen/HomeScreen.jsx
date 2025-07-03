@@ -10,12 +10,16 @@ const HomeScreen = () => {
 
   const getWorkspaces = async ( ) => {
     try{
-      setLoading(true)
-      const data = await getAllWorkspaces()
-      setResponse(data)
+        setLoading(true)
+        const data = await getAllWorkspaces()
+        if (!data?.data?.workspaces) {
+            throw new Error('Invalid response format')
+        }
+        setResponse(data)
     }
     catch(error){
       console.error('Error in obtaining workspaces', error)
+      setResponse({ data: { workspaces: [] } }) // fallback to empty array
     }
     finally{
       setLoading(false)

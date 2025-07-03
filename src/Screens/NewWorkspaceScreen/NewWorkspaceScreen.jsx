@@ -31,17 +31,17 @@ const NewWorkspaceScreen = () => {
     return (
         <div>
             <Link to={'/home'}>
-                Volver a mis espacios de trabajo
+                Return to my workspaces
             </Link>
             {
                 loading
-                    ? <span>cargando...</span>
+                    ? <span>loading...</span>
                     : <>
 
-                        <h1>Crear espacio de trabajo</h1>
+                        <h1>Create a Workspace</h1>
                         <form onSubmit={handleSubmit}>
                             <div>
-                                <label htmlFor='name'>Nombre</label>
+                                <label htmlFor='name'>Name</label>
                                 <input
                                     type="text"
                                     name='name'
@@ -51,7 +51,7 @@ const NewWorkspaceScreen = () => {
                                 />
                             </div>
                             <div>
-                                <label htmlFor='description'>Descripcion</label>
+                                <label htmlFor='description'>Description</label>
                                 <input
                                     type="text"
                                     name='description'
@@ -60,7 +60,7 @@ const NewWorkspaceScreen = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <button>Crear workspace</button>
+                            <button>Create Workspace</button>
                         </form>
                     </>
             }

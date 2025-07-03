@@ -52,7 +52,7 @@ const LoginScreen = () => {
             <form onSubmit={handleSubmit}>
                 <div>
 
-                    <label htmlFor='email'>Enter mail:</label>
+                    <label htmlFor='email'>Enter email:</label>
                     <input
                         id='email'
                         name={LOGIN_FIELD_NAMES.EMAIL}
