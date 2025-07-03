@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react'
 import './HomeScreen.css'
-import { getAllWorkspaces } from '../../services/workspaceService'
+import { getAllWorkspaces } from '../../services/workspaceService.js'
 import { Link } from 'react-router-dom'
 
 const HomeScreen = () => {
