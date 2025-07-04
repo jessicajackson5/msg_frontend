@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import useCustomQuery from '../../hooks/useCustomQuery'
 import { createNewMessage, getAllMessagesByChannelId } from '../../services/messagesService'
-import useForm from '../../hooks/useForm'
+import { useForm } from '../../hooks/useForm'
 
 const Chat = () => {
     const {channel_id, workspace_id} = useParams()

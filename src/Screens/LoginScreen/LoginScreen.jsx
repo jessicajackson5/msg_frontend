@@ -3,7 +3,7 @@ import './LoginScreen.css'
 import LOCALSTORAGE_KEYS from '../../constants/localstorage'
 import { useNavigate } from 'react-router-dom'
 import { login } from '../../services/authService'
-import useForm from '../../hooks/useForm'
+import { useForm } from '../../hooks/useForm'
 import { LOGIN_FIELD_NAMES } from '../../constants/form/login'
 
 const LoginScreen = () => {
@@ -12,7 +12,6 @@ const LoginScreen = () => {
 
     const navigate = useNavigate()
 
-    // Executes when the form is submitted
     const onSubmit = async () => {
         try {
             setLoading(true)
@@ -26,19 +25,18 @@ const LoginScreen = () => {
                     server_response_data.data.authorization_token
                 )
                 navigate('/home')
-            }
-            else {
+            } else {
                 setError(server_response_data.message)
             }
-        }
-        catch (error) {
+        } catch (error) {
             setError('An error ocurred communicating with the server. Try again later')
-        }
-        finally{
+        } finally{
             setLoading(false)
         }
     }
-    const { form_state, handleChange, handleSubmit } = useForm({
+
+    // Set initial form state
+    const { form_state, handleChange, handleSubmit} = useForm({
         onSubmit, 
         initial_form_state: { 
             [LOGIN_FIELD_NAMES.EMAIL]: '', 
@@ -46,6 +44,7 @@ const LoginScreen = () => {
         }
     })
 
+    // Executes when the form is submitted
     return (
         <div>
             <h1>Enter your email to sign in</h1>
@@ -69,11 +68,11 @@ const LoginScreen = () => {
                         name={LOGIN_FIELD_NAMES.PASSWORD}
                         placeholder='current password'
                         type='password'
-                        value={form_state.password}
+                        value={form_state[LOGIN_FIELD_NAMES.PASSWORD]}
                         onChange={handleChange}
-
                     />
                 </div>
+
                 {error && <span style={{ color: 'red' }}>{error}</span>}
                 {
                     loading

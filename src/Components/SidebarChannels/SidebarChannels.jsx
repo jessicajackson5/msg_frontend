@@ -7,7 +7,7 @@ const SidebarChannels = ({channels}) => {
         <aside>
             <nav>
                 {
-                channels.length > 0 
+                channels?.length > 0 
                 ? channels.map((channel) => {
                     return (
                         <React.Fragment key={channel._id} >
@@ -22,7 +22,7 @@ const SidebarChannels = ({channels}) => {
                         
                     )
                 })
-                : <p>No hay canales</p>
+                : <p>There are no channels available</p>
                 }
             </nav>
         </aside>

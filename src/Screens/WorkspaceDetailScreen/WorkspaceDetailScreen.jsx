@@ -4,7 +4,7 @@ import { Navigate, useParams } from 'react-router-dom'
 import SidebarChannels from '../../Components/SidebarChannels/SidebarChannels'
 import useCustomQuery from '../../hooks/useCustomQuery'
 import Chat from '../../Components/Chat/Chat'
-import useForm from '../../hooks/useForm'
+import { useForm } from '../../hooks/useForm'
 
 const WorkspaceDetailScreen = () => {
     const {workspace_id, channel_id} = useParams()
@@ -45,7 +45,7 @@ const WorkspaceDetailScreen = () => {
     
     /* Si no estoy cargando y tengo canales */
     if(!loading && channels_response){
-        if(!channel_id && channels_response.data.channels.length > 0){
+        if(!channel_id && channels_response?.data?.channels?.length > 0){
             /* Lo redirijo al primer canal */
             return <Navigate to={`/workspaces/${workspace_id}/channels/${channels_response.data.channels[0]._id}`}/>
         }
@@ -54,7 +54,7 @@ const WorkspaceDetailScreen = () => {
     if(loading){
         return ( 
             <div>
-                <h1>Cargando espacios de trabajo...</h1>
+                <h1>Loading workspaces...</h1>
             </div>
         )
     }
@@ -62,30 +62,28 @@ const WorkspaceDetailScreen = () => {
 
     return (
         <div>
-            <h1>Detalle del espacio de trabajo</h1>
-            
-            
+            <h1>Workspace Details</h1>
             <div>
                 {
-                    !loading && channels_response && <SidebarChannels channels={channels_response.data.channels}/>
+                    !loading && channels_response && <SidebarChannels channels={channels_response?.data?.channels}/>
                 }
                 {
                 !is_creating_channel 
-                ? <button onClick={handleChangeCreateMode}>Crear canal</button>
+                ? <button onClick={handleChangeCreateMode}>Create a channel</button>
                 :
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="">Nombre canal: </label>
+                        <label htmlFor="">Channel name: </label>
                         <input 
                             type="text" 
-                            placeholder='Nuevo canal' 
+                            placeholder='New channel' 
                             onChange={handleChange} 
                             name='name' 
                             value={form_state.name} 
                         />
                     </div>
-                    <button type='submit'>Crear</button>
-                    <button type='button' onClick={handleQuitCreateMode}>Cancelar</button>
+                    <button type='submit'>Create</button>
+                    <button type='button' onClick={handleQuitCreateMode}>Cancel</button>
                 </form>
             }
             </div>
@@ -94,7 +92,7 @@ const WorkspaceDetailScreen = () => {
                 channel_id 
                 && !loading 
                 && channels_response 
-                && channels_response.data.channels.length > 0 
+                && channels_response?.data?.channels?.length > 0 
                 && <Chat/>
             }
         </div>

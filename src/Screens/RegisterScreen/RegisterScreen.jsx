@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './RegisterScreen.css'
-import useForm from '../../hooks/useForm'
+import { useForm } from '../../hooks/useForm'
 import { REGISTER_FIELD_NAMES } from '../../constants/form/register'
 import { useNavigate } from 'react-router-dom'
 import { register } from '../../services/authService'
