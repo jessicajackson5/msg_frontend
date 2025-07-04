@@ -7,7 +7,7 @@ const useCustomQuery = () => {
     const sendRequest = async(callback) => {
         try {
             setLoading(true)
-            const data = await sendRequest(callback)
+            const data = await callback()
             setResponse(data)
         }
         catch(error){

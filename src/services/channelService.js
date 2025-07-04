@@ -1,4 +1,3 @@
-
 import ENVIRONMENT from "../constants/environment"
 import LOCALSTORAGE_KEYS from "../constants/localstorage"
 import methods_HTTP from "../constants/methodsHTTP"
@@ -14,11 +13,11 @@ export const getChannels = async ({workspace_id}) => {
                 }
             }
         )
-        const data = await server_response.json()
+        const data = server_response
         return data
     }
     catch(error){
-        console.error('Error al obtener canales', error)
+        console.error('Error in getting the channels', error)
         throw error
     }
     

@@ -3,15 +3,17 @@ import LOCALSTORAGE_KEYS from "../constants/localstorage";
 import methods_HTTP from "../constants/methodsHTTP";
 
 export const getAllWorkspaces = async () => {
+
     try{
         const auth_token = localStorage.getItem(LOCALSTORAGE_KEYS.AUTHORIZATION_TOKEN)
         const server_response = await fetch(ENVIRONMENT.URL_API + '/api/workspaces', {
             method: methods_HTTP.GET,
             headers: {
                 'Authorization': `Bearer ${auth_token}`
-            }
+            },
         })
-        const data = server_response.json()
+        const data = await server_response.json()
+        console.log("DATAAAAAAAQAAAAAAA", data)
         return data
     }
     catch(error){
@@ -38,7 +40,8 @@ export const createWorkspace = async (workspace) => {
                 }
             )
         })
-        const data = server_response.json()
+        const data = await server_response.json()
+        console.log("NEW DATAA:", data)
         return data
     }
     catch(error){

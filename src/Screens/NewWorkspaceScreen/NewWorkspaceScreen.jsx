@@ -34,7 +34,7 @@ const NewWorkspaceScreen = () => {
                 Return to my workspaces
             </Link>
             {
-                loading
+                !loading
                     ? <span>loading...</span>
                     : <>
 

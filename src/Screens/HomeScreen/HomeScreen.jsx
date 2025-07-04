@@ -15,7 +15,7 @@ const HomeScreen = () => {
         if (!data?.data?.workspaces) {
             throw new Error('Invalid response format')
         }
-        setResponse(data)
+        setResponse(data) 
     }
     catch(error){
       console.error('Error in obtaining workspaces', error)

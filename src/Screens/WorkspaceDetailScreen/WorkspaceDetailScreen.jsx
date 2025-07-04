@@ -16,7 +16,7 @@ const WorkspaceDetailScreen = () => {
     const initial_form_state = {
         name: ''
     }
-    const { form_state, handleSubmit, handleChange} = useForm({
+    const { form_state, handleSubmit, handleChange } = useForm({
         onSubmit: handleSubmitNewChannel,
         initial_form_state
     })
@@ -42,16 +42,6 @@ const WorkspaceDetailScreen = () => {
         loading, 
         sendRequest
     } = useCustomQuery()
-
-    
-
-    
-
-   
-    
-  
-    
-    
     
     /* Si no estoy cargando y tengo canales */
     if(!loading && channels_response){
