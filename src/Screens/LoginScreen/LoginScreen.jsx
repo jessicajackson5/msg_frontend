@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './LoginScreen.css'
 import LOCALSTORAGE_KEYS from '../../constants/localstorage'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { login } from '../../services/authService'
 import { useForm } from '../../hooks/useForm'
 import { LOGIN_FIELD_NAMES } from '../../constants/form/login'
@@ -79,8 +79,12 @@ const LoginScreen = () => {
                         ? <button type='button' disabled={loading}>Loading</button>
                         : <button type='submit' >Sign in</button>
                 }
-
+               
             </form>
+            <p>
+                    Don't have an account? <Link to="/register">Sign up for an account</Link>
+            </p>
+
         </div>
     )
 }
