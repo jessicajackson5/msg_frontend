@@ -13,7 +13,8 @@ export const getChannels = async ({workspace_id}) => {
                 }
             }
         )
-        const data = server_response
+        const data = await server_response.json()
+
         return data
     }
     catch(error){
@@ -40,7 +41,7 @@ export const createChannel = async ({name, workspace_id}) => {
         return data
     }
     catch(error){
-        console.error('Error al crear canales', error)
+        console.error('Error in creating channels', error)
         throw error
     }
 } 

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import useCustomQuery from '../../hooks/useCustomQuery'
 import { createNewMessage, getAllMessagesByChannelId } from '../../services/messagesService'
-import { useForm } from '../../hooks/useForm'
+import { useForm } from '../../hooks/useForm' 
 
 const Chat = () => {
     const {channel_id, workspace_id} = useParams()
@@ -23,24 +23,24 @@ const Chat = () => {
         onSubmit: handleSubmitNewMessage,
         initial_form_state: initial_state_form
     })
-    if(loading) return <span>cargando...</span>
+    if(loading) return <span>Loading...</span>
     return (
         <div>
-            <h1>Mensajes:</h1>
+            <h1>Messages:</h1>
             {
-                server_messages_response && server_messages_response.data.messages.map( (message) => 
+                server_messages_response && server_messages_response?.data?.messages.map( (message) => 
                     <div key={message._id}>
-                        <b>Autor: {message.user.name}</b>
+                        <b>Author: {message.user.name}</b>
                         <p>{message.content}</p>
                     </div>
                 )
             }
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="content">Escribe tu mensaje:</label>
+                    <label htmlFor="content">Write your message:</label>
                     <textarea name="content" id="content" onChange={handleChange} value={form_state.content}></textarea>
                 </div>
-                <button type="submit">Enviar mensaje</button>
+                <button type="submit">Send message</button>
             </form>
         </div>
     )
