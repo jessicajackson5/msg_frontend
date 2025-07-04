@@ -67,6 +67,7 @@ const LoginScreen = () => {
                     <input
                         id='password'
                         name={LOGIN_FIELD_NAMES.PASSWORD}
+                        placeholder='current password'
                         type='password'
                         value={form_state.password}
                         onChange={handleChange}
