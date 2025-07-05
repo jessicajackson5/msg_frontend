@@ -4,7 +4,7 @@ import { Navigate, useParams } from 'react-router-dom'
 import SidebarChannels from '../../Components/SidebarChannels/SidebarChannels'
 import useCustomQuery from '../../hooks/useCustomQuery'
 import Chat from '../../Components/Chat/Chat'
-import useForm from '../../hooks/useForm'
+import { useForm } from '../../hooks/useForm'
 import './WorkspaceDetailScreen.css'
 
 const WorkspaceDetailScreen = () => {

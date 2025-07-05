@@ -3,7 +3,7 @@ import './LoginScreen.css'
 import LOCALSTORAGE_KEYS from '../../constants/localstorage'
 import { useNavigate, Link } from 'react-router-dom'
 import { login } from '../../services/authService'
-import useForm from '../../hooks/useForm'
+import { useForm } from '../../hooks/useForm'
 import { LOGIN_FIELD_NAMES } from '../../constants/form/login'
 
 const LoginScreen = () => {
