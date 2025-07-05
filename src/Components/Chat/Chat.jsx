@@ -12,10 +12,6 @@ const Chat = () => {
     const [channelName, setChannelName] = useState('Channel')
     const messagesEndRef = useRef(null)
     
-    useEffect(() => {
-        sendRequest(async () => getAllMessagesByChannelId({ channel_id, workspace_id }))
-    }, [channel_id]) //Dependencias: channel_id, cada vez que cambie el channel_id se ejecuta el useEffect
-    
     // Fetch channel name when channel_id changes
     useEffect(() => {
         const fetchChannelName = async () => {
