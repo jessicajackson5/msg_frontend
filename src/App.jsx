@@ -5,6 +5,7 @@ import RegisterScreen from './Screens/RegisterScreen/RegisterScreen'
 import HomeScreen from './Screens/HomeScreen/HomeScreen'
 import NewWorkspaceScreen from './Screens/NewWorkspaceScreen/NewWorkspaceScreen'
 import WorkspaceDetailScreen from './Screens/WorkspaceDetailScreen/WorkspaceDetailScreen'
+import EmailVerificationScreen from './Screens/EmailVerificationScreen/EmailVerificationScreen'
 import AuthProtectRoute from './Components/AuthProtectRoute/AuthProtectRoute'
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
           <Route path = '/' element = {<LoginScreen />}/>
           <Route path = '/login' element = {<LoginScreen />}/>
           <Route path = '/register' element = {<RegisterScreen />}/>
+          <Route path = '/verify-email' element = {<EmailVerificationScreen />}/>
           <Route element = {<AuthProtectRoute/>}>
             <Route path = '/home' element = {<HomeScreen />}/>
             <Route path = '/new' element = {<NewWorkspaceScreen />}/>
