@@ -1,14 +1,14 @@
 import { useState } from "react"
 
 //La responsabilidad de el hook useForm es manejar la logica del formulario
-export function useForm({onSubmit, initial_form_state}) {
+const useForm({onSubmit, initial_form_state}) {
     //Logica del estado, efecto lo quieras manejar
     const [form_state, setFormState] = useState(initial_form_state)
 
      const handleSubmit = async (event) => {
         event.preventDefault()
         onSubmit()
-        
+        setFormState(initial_form_state)
     }
 
     const handleChange = (event) => {
@@ -28,3 +28,5 @@ export function useForm({onSubmit, initial_form_state}) {
         setFormState
     }
 }
+
+export default useForm
