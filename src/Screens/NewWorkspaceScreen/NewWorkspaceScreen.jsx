@@ -3,6 +3,7 @@ import { useForm } from '../../hooks/useForm'
 import useCustomQuery from '../../hooks/useCustomQuery'
 import { createWorkspace } from '../../services/workspaceService'
 import { Link, useNavigate } from 'react-router-dom'
+import './NewWorkspaceScreen.css'
 
 const NewWorkspaceScreen = () => {
     const navigate = useNavigate()
@@ -29,18 +30,17 @@ const NewWorkspaceScreen = () => {
 
 
     return (
-        <div>
-            <Link to={'/home'}>
-                Return to my workspaces
+        <div className="new-workspace-container">
+            <Link to={'/home'} className="back-link">
+                ← Return to my workspaces
             </Link>
             {
-                !loading
-                    ? <span>loading...</span>
-                    : <>
-
+                loading
+                    ? <div className="loading-text">Loading...</div>
+                    : <div className="workspace-form-container">
                         <h1>Create a Workspace</h1>
                         <form onSubmit={handleSubmit}>
-                            <div>
+                            <div className="form-group">
                                 <label htmlFor='name'>Name</label>
                                 <input
                                     type="text"
@@ -48,9 +48,10 @@ const NewWorkspaceScreen = () => {
                                     id='name'
                                     value={form_state.name}
                                     onChange={handleChange}
+                                    placeholder="Enter workspace name"
                                 />
                             </div>
-                            <div>
+                            <div className="form-group">
                                 <label htmlFor='description'>Description</label>
                                 <input
                                     type="text"
@@ -58,13 +59,15 @@ const NewWorkspaceScreen = () => {
                                     id='description'
                                     value={form_state.description}
                                     onChange={handleChange}
+                                    placeholder="Enter workspace description"
                                 />
                             </div>
-                            <button>Create Workspace</button>
+                            <button type="submit" className="submit-button">
+                                Create Workspace
+                            </button>
                         </form>
-                    </>
+                    </div>
             }
-
         </div>
     )
 }
