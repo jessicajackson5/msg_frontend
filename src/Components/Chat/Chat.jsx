@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import useCustomQuery from '../../hooks/useCustomQuery'
 import { createNewMessage, getAllMessagesByChannelId } from '../../services/messagesService'
 import { getChannels } from '../../services/channelService'
-import { useForm } from '../../hooks/useForm'
+import useForm from '../../hooks/useForm'
 import './Chat.css'
 
 const Chat = () => {
