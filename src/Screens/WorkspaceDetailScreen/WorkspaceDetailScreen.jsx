@@ -12,10 +12,15 @@ const WorkspaceDetailScreen = () => {
     const { workspace_id, channel_id } = useParams()
     const [is_creating_channel, setIsCreatingChannel] = useState(false)
     
-    const handleSubmitNewChannel = () => {
+    /* const handleSubmitNewChannel = () => {
         sendRequest(async () => await createChannel({ name: form_state.name, workspace_id: workspace_id }))
         setIsCreatingChannel(false)
-    }
+    }*/
+        const handleSubmitNewChannel = async () => {
+            await sendRequest(async () => await createChannel({ name: form_state.name, workspace_id: workspace_id }));
+            await sendRequest(async () => await getChannels({ workspace_id }));
+            setIsCreatingChannel(false);
+        }
     
     const initial_form_state = {
         name: ''
