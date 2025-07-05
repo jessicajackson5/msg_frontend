@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './HomeScreen.css'
 import { getAllWorkspaces } from '../../services/workspaceService.js'
 import { Link } from 'react-router-dom'
+import LogoutButton from '../../Components/LogoutButton/LogoutButton'
 
 const HomeScreen = () => {
   const [response, setResponse] = useState([])
@@ -31,6 +32,7 @@ const HomeScreen = () => {
 
   return (
     <div className="home-container">
+      <LogoutButton />
       <div className="home-header">
         <div className="header-content">
           <h1>Your Workspaces</h1>

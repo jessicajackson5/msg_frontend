@@ -163,6 +163,14 @@
   display: flex;
   gap: 8px;
   min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.form-actions button {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .btn-primary {
@@ -187,17 +195,25 @@
 
 .btn-secondary {
   background: transparent;
-  color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.7);
   border-radius: 8px;
   padding: 8px 16px;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
   flex: 1;
   min-width: 0;
   white-space: nowrap;
+}
+
+.btn-secondary:disabled {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(0,0,0,0.2);
+  cursor: not-allowed;
+  opacity: 1;
 }
 
 .btn-secondary:hover {
@@ -261,6 +277,7 @@
 }
 
 .workspace-loading h2 {
+  color: white;
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0 0 8px 0;

@@ -56,7 +56,7 @@ const LoginScreen = () => {
                             <line x1="15" y1="12" x2="3" y2="12"></line>
                         </svg>
                     </div>
-                    <h1>Welcome Back</h1>
+                    <h1>World of Workspaces</h1>
                     <p>Sign in to your account to continue</p>
                 </div>
 

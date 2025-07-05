@@ -58,3 +58,15 @@ export const register = async ({ email, password, name }) => {
         }
     }
 }
+
+export const logout = () => {
+    try {
+        localStorage.removeItem('authorization_token')
+        return { ok: true, message: 'Logged out successfully' }
+    } catch (error) {
+        console.error('Error during logout:', error)
+        throw {
+            message: 'An error occurred during logout. Please try again.'
+        }
+    }
+}

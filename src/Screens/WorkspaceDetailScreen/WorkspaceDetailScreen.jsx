@@ -6,6 +6,7 @@ import useCustomQuery from '../../hooks/useCustomQuery'
 import Chat from '../../Components/Chat/Chat'
 import useForm from '../../hooks/useForm'
 import './WorkspaceDetailScreen.css'
+import LogoutButton from '../../Components/LogoutButton/LogoutButton'
 
 const WorkspaceDetailScreen = () => {
     const { workspace_id, channel_id } = useParams()
@@ -44,6 +45,15 @@ const WorkspaceDetailScreen = () => {
         sendRequest
     } = useCustomQuery()
 
+    // Extract workspace name from channels_response if available
+    let workspaceName = ''
+    if (channels_response && channels_response.data && channels_response.data.workspace) {
+        workspaceName = channels_response.data.workspace.name
+    } else if (channels_response && channels_response.data && channels_response.data.channels && channels_response.data.channels.length > 0) {
+        // Fallback: try to get from first channel if present
+        workspaceName = channels_response.data.channels[0].workspaceName || ''
+    }
+
     /* Si no estoy cargando y tengo canales */
     if (!loading && channels_response) {
         if (!channel_id && channels_response?.data?.channels?.length > 0) {
@@ -55,6 +65,7 @@ const WorkspaceDetailScreen = () => {
     if (loading) {
         return (
             <div className="workspace-loading">
+                <LogoutButton />
                 <div className="loading-spinner"></div>
                 <h2>Loading workspace...</h2>
                 <p>Please wait while we load your channels</p>
@@ -64,9 +75,10 @@ const WorkspaceDetailScreen = () => {
 
     return (
         <div className="workspace-detail-container">
+            <LogoutButton />
             <div className="workspace-sidebar">
                 <div className="sidebar-header">
-                    <h1>Workspace</h1>
+                    <h1>Workspace{workspaceName && <span style={{fontWeight: 400, fontSize: '1.1rem', marginLeft: 8, color: 'rgba(255,255,255,0.85)'}}>{workspaceName}</span>}</h1>
                 </div>
                 {!loading && channels_response && (
                     <SidebarChannels 

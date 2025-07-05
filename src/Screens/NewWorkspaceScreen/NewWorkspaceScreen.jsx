@@ -4,6 +4,7 @@ import useCustomQuery from '../../hooks/useCustomQuery'
 import { createWorkspace } from '../../services/workspaceService'
 import { Link, useNavigate } from 'react-router-dom'
 import './NewWorkspaceScreen.css'
+import LogoutButton from '../../Components/LogoutButton/LogoutButton'
 
 const NewWorkspaceScreen = () => {
     const navigate = useNavigate()
@@ -31,6 +32,7 @@ const NewWorkspaceScreen = () => {
 
     return (
         <div className="new-workspace-container">
+            <LogoutButton />
             <Link to={'/home'} className="back-link">
                 ← Return to my workspaces
             </Link>

@@ -11,7 +11,7 @@ const Chat = () => {
     const { response: server_messages_response, loading, error, sendRequest } = useCustomQuery()
     const [channelName, setChannelName] = useState('Channel')
     const messagesEndRef = useRef(null)
-    
+
     // Fetch channel name when channel_id changes
     useEffect(() => {
         const fetchChannelName = async () => {
@@ -77,13 +77,10 @@ const Chat = () => {
             <div className="chat-header">
                 <div className="chat-header-content">
                     <div className="channel-info">
-                        <svg className="channel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                        </svg>
                         <h1>{channelName}</h1>
-                    </div>
-                    <div className="message-count">
-                        {server_messages_response?.data?.messages?.length || 0} messages
+                        <span className="message-count">
+                            {server_messages_response?.data?.messages?.length || 0} messages
+                        </span>
                     </div>
                 </div>
             </div>
@@ -91,7 +88,7 @@ const Chat = () => {
             <div className="messages-container">
                 {server_messages_response?.data?.messages?.length > 0 ? (
                     server_messages_response.data.messages.map((message) => (
-                        <div key={message._id} className="message-item">
+                        <div key={message._id} className="message">
                             <div className="message-avatar">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -127,30 +124,22 @@ const Chat = () => {
             </div>
 
             <div className="message-input-container">
-                <form onSubmit={handleSubmit} className="message-form">
-                    <div className="input-wrapper">
-                        <textarea
-                            name="content"
-                            id="content"
-                            onChange={handleChange}
-                            value={form_state.content}
-                            placeholder={`Type your message in ${channelName}...`}
-                            className="message-input"
-                            rows="1"
-                            onKeyDown={(e) => {
-                                if (e.key === 'Enter' && !e.shiftKey) {
-                                    e.preventDefault()
-                                    handleSubmit(e)
-                                }
-                            }}
-                        />
-                        <button type="submit" className="send-button" disabled={!form_state.content.trim()}>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <line x1="22" y1="2" x2="11" y2="13"></line>
-                                <polygon points="22,2 15,22 11,13 2,9 22,2"></polygon>
-                            </svg>
-                        </button>
-                    </div>
+                <form onSubmit={handleSubmit} className="input-wrapper">
+                    <input
+                        type="text"
+                        name="content"
+                        value={form_state.content}
+                        onChange={handleChange}
+                        placeholder={`Type your message in ${channelName}...`}
+                        className="message-input"
+                        required
+                    />
+                    <button type="submit" className="send-button" disabled={!form_state.content.trim()}>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22,2 15,22 11,13 2,9 22,2"></polygon>
+                        </svg>
+                    </button>
                 </form>
             </div>
         </div>
